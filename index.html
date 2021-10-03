@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Toss Game</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rebeccapurple;
+            display: flex;
+            flex-direction: column;
+            margin:0;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #container{
+            box-sizing: border-box;
+            max-width: 500px;
+        }
+        .btn{
+            margin-top: 100px;
+            width:200px;
+            height:200px;
+            border-radius: 50%;
+            color:saddlebrown;
+            font-size: 30px;
+            border: 1px solid aquamarine;
+            box-shadow:0 0 50px black;
+            margin-left: 30px;
+        }
+#msg1,#msg2{
+    color:honeydew;
+    margin-top: 80px;
+    margin-left: 80px;
+    font-size:25px;
+}
+@media screen and (max-width:320px){
+    #msg1,#msg2{
+        font-size: 20px;
+        margin-left:10px;
+    }
+    .btn{
+        width:100px;
+        height:100px;
+        font-size: 25px;
+    }
+
+}
+
+
+    </style>
+</head>
+<body>
+    <div id='container'>
+        
+        <div id="msg1"></div>
+        <div id="msg2"></div>
+        <button type="button" class="btn">Heads</button>
+        <button type="button" class="btn">Tails</button>
+
+    </div>
+    <script>
+        const msg1 = document.querySelector("#msg1");
+        const msg2 = document.querySelector("#msg2");
+        const buttons = document.querySelectorAll(".btn");
+// console.log(buttons);
+
+
+let coinArray = ['Heads','Tails'];
+let score =[0,0];
+
+for(let i=0;i<buttons.length;i++){
+   buttons[i].addEventListener("click",tossCoin);
+}
+function tossCoin(e){
+let playerGuess = e.target.innerText;
+ let computerGuess = Math.floor(Math.random() * 2);
+// console.log(computerGuess);
+ let computerSelection = coinArray[computerGuess];
+//  console.log(computerSelection);
+let output;
+
+if(playerGuess === computerSelection){
+    output = "Player Wins";
+    score[0]++;
+}
+else{
+    output = "Computer Wins";
+    score[1]++;
+}
+msg1.innerHTML = output + "<br> Player : " + score[0] + " Computer : " + score[1];
+msg2.innerHTML = `Computer selected  ->  ${computerSelection} <br> Player selected  ->  ${playerGuess}`;
+}
+
+    </script>
+</body>
+</html>
